@@ -6,8 +6,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Task Manager</h1>
+  <div id="login-msg">
+    Login to acccess <a href="login.html">Task Manager</a>
+  </div>
   <div id="app" style="display:none">
+    <h1>Task Manager</h1>
+ 
     <h2>Welcome, <span id="user"></span></h2>
     <input type="text" id="taskInput" placeholder="New task">
     <button onclick="addTask()">Add Task</button>

@@ -7,24 +7,27 @@
 </head>
 <body>
   <h1>Signup</h1>
-  <input type="text" id="signupUsername" placeholder="Username">
+  <input type="text" id="signupUsername" placeholder="Username" required>
+  <input type="password" id="signupPassword" placeholder="Password" required>
   <button onclick="signup()">Sign up</button>
   <p>Already have an account? <a href="login.html">Login</a></p>
   <script>
     function signup() {
       const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+
       fetch('/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({ username, password })
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Signup failed'))
+      .then(res => res.ok ? res.json() : res.json().then(err => Promise.reject(err.error)))
       .then(data => {
-        localStorage.setItem('userId', data.userId);
-        localStorage.setItem('username', username);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', data.username);
         window.location.href = 'index.html';
       })
-      .catch(alert);
+      .catch(error => alert('Signup failed: ' + error));
     }
   </script>
 </body>
