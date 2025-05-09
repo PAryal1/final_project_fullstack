@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Login</h1>
+  <input type="text" id="loginUsername" placeholder="Username">
+  <button onclick="login()">Login</button>
+  <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+  <script>
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      })
+      .then(res => res.ok ? res.json() : Promise.reject('Login failed'))
+      .then(data => {
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('username', username);
+        window.location.href = 'index.html';
+      })
+      .catch(alert);
+    }
+  </script>
+</body>
+</html>
