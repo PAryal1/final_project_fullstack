@@ -1,14 +1,18 @@
 # Task Manager
+
 ## Description
-Task Manager is a web-based application that allows users to manage their daily tasks. Users can sign up, log in, add tasks, update their status, archive tasks, and delete them. The application is built using Express.js for the backend and NeDB for data storage.
+
+Task Manager is a fullstack web application that allows users to manage their daily tasks. Users can sign up, log in, add tasks, update their status, archive tasks, and delete them. The application is built using Express.js for the backend and NeDB for data storage.
 
 ## Features
+
 - User authentication (Signup/Login) with JWT.
 - Add, view, update, archive, and delete tasks.
 - Saved in local storage using NeDB.
 - Responsive and user-friendly interface.
 
-## File Structure 
+## File Structure
+
 ```file
 final_project/
 ├── .gitignore               # Files and directories to ignore in Git
@@ -23,15 +27,18 @@ final_project/
 │   ├── script.js            # Frontend JavaScript logic
 │   ├── style.css            # Styling for the application
 ```
+
 ## Dependencies
+
 The project uses the following dependencies:
 
 - express: Web framework for Node.js.
-- nedb: Lightweight database for storing tasks and users.
+- nedb: Lightweight local database for storing tasks and users.
 - bcrypt: For hashing passwords.
 - jsonwebtoken: For generating and verifying JWT tokens.
 
 ## Backend
+
 The backend is implemented in index.js and provides the following endpoints:
 
 - POST /signup: Create a new user.
