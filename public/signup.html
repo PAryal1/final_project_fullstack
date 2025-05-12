@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Signup</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Signup</h1>
-  <input type="text" id="signupUsername" placeholder="Username" required>
-  <input type="password" id="signupPassword" placeholder="Password" required>
-  <button onclick="signup()">Sign up</button>
-  <p>Already have an account? <a href="login.html">Login</a></p>
-  <script>
-    function signup() {
-      const username = document.getElementById('signupUsername').value;
-      const password = document.getElementById('signupPassword').value;
+  <head>
+    <meta charset="UTF-8" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Task Manager - Organize your daily tasks and stay productive."
+    />
+    <meta
+      name="keywords"
+      content="task manager, productivity, tasks, organization"
+    />
+    <meta name="theme-color" content="#2196f3" />
+  </head>
+  <body>
+    <h1>Signup</h1>
+    <input type="text" id="signupUsername" placeholder="Username" required />
+    <input
+      type="password"
+      id="signupPassword"
+      placeholder="Password"
+      required
+    />
+    <button onclick="signup()">Sign up</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+    <script>
+      function signup() {
+        const username = document.getElementById("signupUsername").value;
+        const password = document.getElementById("signupPassword").value;
 
-      fetch('/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      })
-      .then(res => res.ok ? res.json() : res.json().then(err => Promise.reject(err.error)))
-      .then(data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('username', data.username);
-        window.location.href = 'index.html';
-      })
-      .catch(error => alert('Signup failed: ' + error));
+        fetch("/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        })
+          .then((res) =>
+            res.ok
+              ? res.json()
+              : res.json().then((err) => Promise.reject(err.error))
+          )
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("username", data.username);
+            window.location.href = "index.html";
+          })
+          .catch((error) => alert("Signup failed: " + error));
+      }
+    </script>
+  </body>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch((err) => console.error("SW registration failed:", err));
     }
   </script>
-</body>
 </html>

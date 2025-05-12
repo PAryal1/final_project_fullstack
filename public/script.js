@@ -89,3 +89,17 @@ function deleteTask(id) {
     }
   }).then(loadTasks);
 }
+
+
+// 
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
+    });
+  });
+
